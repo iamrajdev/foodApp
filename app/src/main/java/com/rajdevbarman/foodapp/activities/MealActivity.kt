@@ -1,6 +1,8 @@
 package com.rajdevbarman.foodapp.activities
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,6 +21,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealName:String
     private lateinit var mealThumb:String
     private lateinit var binding:ActivityMealBinding
+    private lateinit var youtubeLink:String
     private  lateinit var mealMvvm:MealViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,15 @@ class MealActivity : AppCompatActivity() {
         loadingCase()
         mealMvvm.getMealDetail(mealId)
         observerMealDetailsLiveData()
+
+        onYoutubeClick()
+    }
+
+    private fun onYoutubeClick() {
+        binding.imgYoutube.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink))
+            startActivity(intent)
+        }
     }
 
     private fun observerMealDetailsLiveData() {
@@ -44,6 +56,7 @@ class MealActivity : AppCompatActivity() {
             binding.tvCategory.text = "Category : ${meal!!.strCategory}"
             binding.tvArea.text = "Area : ${meal.strArea}"
             binding.tvInstructionsSt.text = meal.strInstructions
+            youtubeLink = meal.strYoutube
         }
     }
 
