@@ -3,6 +3,7 @@ package com.rajdevbarman.foodapp.activities
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -31,19 +32,19 @@ class MealActivity : AppCompatActivity() {
 
         setInformationInViews()
 
+        loadingCase()
         mealMvvm.getMealDetail(mealId)
         observerMealDetailsLiveData()
     }
 
     private fun observerMealDetailsLiveData() {
-        mealMvvm.observerMealDetailsLiveData().observe(this, object : Observer<Meal> {
-            override fun onChanged(meal: Meal?) {
-                binding.tvCategory.text = "Category : ${meal!!.strCategory}"
-                binding.tvArea.text = "Area : ${meal.strArea}"
-                binding.tvInstructionsSt.text = meal.strInstructions
-            }
-
-        })
+        mealMvvm.observerMealDetailsLiveData().observe(this
+        ) { meal ->
+            onResponseCase()
+            binding.tvCategory.text = "Category : ${meal!!.strCategory}"
+            binding.tvArea.text = "Area : ${meal.strArea}"
+            binding.tvInstructionsSt.text = meal.strInstructions
+        }
     }
 
     private fun setInformationInViews() {
@@ -61,5 +62,23 @@ class MealActivity : AppCompatActivity() {
         mealId = intent.getStringExtra(HomeFragment.MEAL_ID)!!
         mealName = intent.getStringExtra(HomeFragment.MEAL_NAME)!!
         mealThumb = intent.getStringExtra(HomeFragment.MEAL_THUMB)!!
+    }
+
+    private fun loadingCase(){
+        binding.progressBar.visibility = View.VISIBLE
+        binding.btnAddToFab.visibility = View.INVISIBLE
+        binding.tvInstructions.visibility = View.INVISIBLE
+        binding.tvCategory.visibility = View.INVISIBLE
+        binding.tvArea.visibility = View.INVISIBLE
+        binding.imgYoutube.visibility = View.INVISIBLE
+    }
+
+    private fun onResponseCase(){
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.btnAddToFab.visibility = View.VISIBLE
+        binding.tvInstructions.visibility = View.VISIBLE
+        binding.tvCategory.visibility = View.VISIBLE
+        binding.tvArea.visibility = View.VISIBLE
+        binding.imgYoutube.visibility = View.VISIBLE
     }
 }
