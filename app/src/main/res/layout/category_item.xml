@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/img_category"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:scaleType="fitCenter"
         android:src="@color/accent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
