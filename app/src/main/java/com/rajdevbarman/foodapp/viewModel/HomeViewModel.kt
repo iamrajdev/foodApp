@@ -9,7 +9,6 @@ import com.rajdevbarman.foodapp.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.Console
 
 class HomeViewModel():ViewModel() {
 

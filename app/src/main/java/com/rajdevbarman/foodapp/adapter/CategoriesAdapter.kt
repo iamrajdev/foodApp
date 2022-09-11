@@ -11,6 +11,7 @@ import com.rajdevbarman.foodapp.pojo.CategoryList
 class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     private var categoriesList = ArrayList<Category>()
+    var onItemClick : ((Category) -> Unit)? = null
 
     fun setCategoriesList(categoriesList: List<Category>){
         this.categoriesList = categoriesList as ArrayList<Category>
@@ -34,6 +35,9 @@ class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHo
             .into(holder.binding.imgCategory)
 
         holder.binding.tvCategoryName.text = categoriesList[position].strCategory
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoriesList[position])
+        }
     }
 
     override fun getItemCount(): Int {

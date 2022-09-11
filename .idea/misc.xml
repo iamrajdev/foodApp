@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/drawable/ic_search.xml" value="0.114" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/font/fonts.xml" value="0.16197916666666667" />
+        <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/activity_category_meals.xml" value="0.10052083333333334" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/activity_meal.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/category_item.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/fragment_categories.xml" value="0.17572463768115942" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/fragment_favorites.xml" value="0.17572463768115942" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/fragment_home.xml" value="0.15" />
+        <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/meal_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/layout/popular_items.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProject/Kotlin-project/app/src/main/res/menu/btn_mnu.xml" value="0.21" />
       </map>
