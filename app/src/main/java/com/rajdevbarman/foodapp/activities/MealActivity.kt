@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -66,8 +67,8 @@ class MealActivity : AppCompatActivity() {
             .into(binding.imgMealDetails)
 
         binding.collapsingToolbar.title = mealName
-        binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
-        binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
+        binding.collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+        binding.collapsingToolbar.setExpandedTitleColor(ContextCompat.getColor(applicationContext, R.color.white))
     }
 
     private fun getMealInformationFromIntent() {
