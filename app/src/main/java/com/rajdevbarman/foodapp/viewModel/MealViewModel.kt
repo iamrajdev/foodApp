@@ -9,6 +9,7 @@ import com.rajdevbarman.foodapp.db.MealDatabase
 import com.rajdevbarman.foodapp.pojo.Meal
 import com.rajdevbarman.foodapp.pojo.MealList
 import com.rajdevbarman.foodapp.retrofit.RetrofitInstance
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,14 +42,8 @@ class MealViewModel(
     }
 
     fun insertMeal(meal: Meal){
-        viewModelScope.launch {
-            mealDatabase.mealDao().update(meal)
-        }
-    }
-
-    fun deleteMeal(meal: Meal){
-        viewModelScope.launch {
-            mealDatabase.mealDao().delete(meal)
+        viewModelScope.launch(Dispatchers.IO) {
+            mealDatabase.mealDao().upsert(meal)
         }
     }
 
