@@ -10,6 +10,7 @@ import com.rajdevbarman.foodapp.pojo.MealsByCategory
 class MostPopularMealAdapter: RecyclerView.Adapter<MostPopularMealAdapter.PopularMealViewHolder>() {
 
     lateinit var onItemClick:((MealsByCategory) -> Unit)
+    var onLongItemClicked: ((MealsByCategory) -> Unit)? = null
     private var mealList= ArrayList<MealsByCategory>()
 
     fun setMeals(mealList: ArrayList<MealsByCategory>){
@@ -30,6 +31,11 @@ class MostPopularMealAdapter: RecyclerView.Adapter<MostPopularMealAdapter.Popula
 
         holder.itemView.setOnClickListener {
             onItemClick.invoke(mealList[position])
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onLongItemClicked?.invoke(mealList[position])
+            true
         }
     }
 
