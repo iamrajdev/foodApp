@@ -23,18 +23,21 @@ class HomeViewModel(
     private var categoryLiveData = MutableLiveData<List<Category>>()
     private var favoriteMealLiveData = mealDatabase.mealDao().getAllMeal()
     private var bottomSheetMealLiveData = MutableLiveData<Meal>()
+    private var saveStateRandomMeal: Meal? = null
 
-    init {
-        getRandomMeal()
-    }
 
     fun getRandomMeal(){
+        saveStateRandomMeal?.let { randomMeal ->
+            randomMealLiveData.postValue(randomMeal)
+            return
+        }
         RetrofitInstance.api.getRandomMeal().enqueue(object : Callback<MealList>{
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 if(response.body() != null){
                     val randomMeal: Meal = response.body()!!.meals[0]
                     Log.d("Test", "Meal ID: ${randomMeal.idMeal} - Meal Name: ${randomMeal.strMeal}")
                     randomMealLiveData.value = randomMeal
+                    saveStateRandomMeal = randomMeal
                 } else{
                     return
                 }
