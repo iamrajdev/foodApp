@@ -52,5 +52,5 @@ Everything you want is included in this repository so all you need to do is to c
 * [Coroutines](https://developer.android.com/kotlin/coroutines) - Coroutines are used to perform asynchronously.
 
 ## Contact :link:
-[Linkedin][https://www.linkedin.com/in/iamrajdev/]
+[Linkedin](https://www.linkedin.com/in/iamrajdev/)
 
