@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.rajdevbarman.foodapp.R
 import com.rajdevbarman.foodapp.activities.CategoryMealsActivity
 import com.rajdevbarman.foodapp.activities.MainActivity
 import com.rajdevbarman.foodapp.activities.MealActivity
@@ -40,8 +43,11 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+
         viewModel = (activity as MainActivity).viewModel
         popularItemAdapter = MostPopularMealAdapter()
+
     }
 
     override fun onCreateView(
@@ -49,13 +55,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showLoadingCase()
 
         popularItemRecyclerView()
 
@@ -75,6 +81,41 @@ class HomeFragment : Fragment() {
 
         onPopularItemLongClick()
 
+        binding.imgSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homefrag_to_searchfrag)
+        }
+
+    }
+
+    private fun showLoadingCase() {
+        binding.apply {
+            linearHeader.visibility = View.INVISIBLE
+
+            tvWouldYouLikeToEat.visibility = View.INVISIBLE
+            randomMealCard.visibility = View.INVISIBLE
+            tvOverPopular.visibility = View.INVISIBLE
+            recViewMealsPopular.visibility = View.INVISIBLE
+            tvCategories.visibility = View.INVISIBLE
+            categoryCard.visibility = View.INVISIBLE
+            loadingGif.visibility = View.VISIBLE
+            rootHome.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.g_loading))
+
+        }
+    }
+
+    private fun cancelLoadingCase() {
+        binding.apply {
+            linearHeader.visibility = View.VISIBLE
+            tvWouldYouLikeToEat.visibility = View.VISIBLE
+            randomMealCard.visibility = View.VISIBLE
+            tvOverPopular.visibility = View.VISIBLE
+            recViewMealsPopular.visibility = View.VISIBLE
+            tvCategories.visibility = View.VISIBLE
+            categoryCard.visibility = View.VISIBLE
+            loadingGif.visibility = View.INVISIBLE
+            rootHome.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        }
     }
 
     private fun onPopularItemLongClick() {
@@ -103,6 +144,9 @@ class HomeFragment : Fragment() {
 
     private fun observeCategoriesLiveData() {
         viewModel.observeCategoriesLivaData().observe(viewLifecycleOwner, Observer { categories ->
+
+            cancelLoadingCase()
+
             categoriesAdapter.setCategoriesList(categories)
         })
     }

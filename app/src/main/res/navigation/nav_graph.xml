@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.rajdevbarman.foodapp.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homefrag_to_searchfrag"
+            app:destination="@id/searchFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.rajdevbarman.foodapp.fragments.FavoritesFragment"
@@ -20,4 +24,11 @@
         android:name="com.rajdevbarman.foodapp.fragments.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.rajdevbarman.foodapp.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search"/>
+
 </navigation>
